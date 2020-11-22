@@ -1,0 +1,3 @@
+plasma4 (plasma4.c pal.h vga.h types.h)
+vga (vga.h types.h)
+
