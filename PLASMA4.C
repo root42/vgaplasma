@@ -38,17 +38,13 @@ void draw_plasma(word x, word y, word w, word h, dword t)
   word c1,c2,c3,v1,v2;
   word i,j;
 
+  v1 = SIN256[(t*3)%256];
+  v2 = SIN256[(64+t*5)%256];
   for(j = y; j < y + h; j++){
     c3 = SIN256[(j*3 + t*3) % 256];
-    v1 = SIN256[(t*3)%256];
-    v2 = (j*SIN256[(64+t*5)%256])/h;
     for(i = x; i < x + w; i++) {
       c1 = SIN256[(i*3 + t*2) % 256];
-      c2 = SIN256[(
-	     (i*v1)/w +
-	     v2 +
-	     t
-	   ) % 256];
+      c2 = SIN256[((i*v1)/w + (j*v2)/h + t) % 256];
       c = (byte)((c1 + c2 + c3) / 3);
       SETPIX(i,j,c);
     }
